@@ -14,6 +14,7 @@ public class BulletHartScript : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.velocity = PlayerDirection * moveSpeed;
+
         Destroy(gameObject, 5);
 
         transform.rotation = Quaternion.Euler(270, 0, 0);
@@ -39,6 +40,7 @@ public class BulletHartScript : MonoBehaviour
     // ’e‚Ì•ûŒü‚ğİ’è‚·‚é‚½‚ß‚Ìƒƒ\ƒbƒh
     public void SetDirection(Vector3 forward)
     {
+        //’e‚ÌŒü‚«•Ï‚¦‚æ‚¤‚Æ‚µ‚½‚â‚Â
         PlayerDirection = forward;
     }
 

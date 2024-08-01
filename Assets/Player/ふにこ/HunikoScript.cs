@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UniGLTF;
 using UnityEngine;
 
 public class HunikoScript : MonoBehaviour
@@ -50,26 +51,25 @@ public class HunikoScript : MonoBehaviour
         }
         else
         {
-            rb.velocity = new Vector3(0, 0, 0);
+            rb.velocity=new Vector3 (0, 0, 0);
             animator.SetBool("Run", false);
         }
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Vector3 position = transform.position;
-            position.y += 0.8f;
-            position.z += 1.0f;
+        Vector3 position = transform.position + transform.forward * 1.0f;
+        //’e‚ÌŒü‚«•Ï‚¦‚æ‚¤‚Æ‚µ‚½‚â‚Â
+        Quaternion rotation = transform.rotation;
+        position.y += 0.8f;
+        position.z += 1.0f;
 
-            if (bulletHartTimer == 0)
-            {
-                GameObject bullet = Instantiate(bulletHart, position, transform.rotation);
-                bulletScript = bullet.GetComponent<BulletHartScript>();
-                bulletScript.SetDirection(transform.forward);
-                bulletHartTimer = 1;
-            }
+        if (bulletHartTimer == 0)
+        {
+            GameObject bullet = Instantiate(bulletHart, position,rotation);
+            bulletScript = bullet.GetComponent<BulletHartScript>();
+            bulletScript.SetDirection(transform.forward);
+            bulletHartTimer = 1;
         }
 
         if (bulletHartTimer != 0)
@@ -88,7 +88,6 @@ public class HunikoScript : MonoBehaviour
         {
             gameManagerScript.GameOverStart();
             Destroy(other.gameObject);
-            Debug.Log("Ž€‚ñ‚¾");
         }
     }
 }
